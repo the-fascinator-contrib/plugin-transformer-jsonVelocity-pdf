@@ -1,0 +1,10 @@
+{
+    "urlBase" : "http://localhost:8080/redbox/",
+    "transformerDefaults": {
+        "jsonVelocityPDF": {
+            "id" : "jsonVelocityPDF",
+            "sourcePayload" : "object.tfpackage",
+            "templatesPath" : "src/main/resources/templates/"
+         }
+     }
+}
