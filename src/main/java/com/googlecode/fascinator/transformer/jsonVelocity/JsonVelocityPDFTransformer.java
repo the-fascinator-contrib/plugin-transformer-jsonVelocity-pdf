@@ -142,6 +142,10 @@ public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
             throws TransformerException {
         try {
             try {
+            	if(itemConfig.getBoolean(false,"versioning")) {
+            		String dateStampedPid = getTimestampedPayload(pid);
+            		 object.createStoredPayload(dateStampedPid, stream(data));
+            	}
                 return object.createStoredPayload(pid, stream(data));
             } catch (StorageException ex) {
                 // Already exists, try an update
@@ -159,7 +163,7 @@ public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
         
     }
 
-    /**
+	/**
      * Convert the provided String into an InputStream to pass to the storage API.
      *
      * @param string: The String to convert
@@ -192,7 +196,7 @@ public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
         return templateName.substring(0, templateName.indexOf(".")) + ".pdf";
     }
 
-    
+   
  
 	@Override
 	protected String getUrlBase() {
