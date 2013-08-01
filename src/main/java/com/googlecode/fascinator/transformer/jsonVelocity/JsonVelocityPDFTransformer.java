@@ -33,6 +33,7 @@ import com.googlecode.fascinator.api.storage.DigitalObject;
 import com.googlecode.fascinator.api.storage.Payload;
 import com.googlecode.fascinator.api.storage.StorageException;
 import com.googlecode.fascinator.api.transformer.TransformerException;
+import com.googlecode.fascinator.portal.services.PortalManager;
 import com.itextpdf.text.DocumentException;
 
 /**
@@ -175,7 +176,7 @@ public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
     	ByteArrayOutputStream bos = new ByteArrayOutputStream();
     	
     	ITextRenderer renderer = new ITextRenderer();
-    	renderer.setDocumentFromString(string,new File(".").toURI().toURL().toString());
+    	renderer.setDocumentFromString(string,new File(systemConfig.getString(PortalManager.DEFAULT_PORTAL_HOME, "portal", "home")).toURI().toURL().toString());
     	renderer.layout();
     	renderer.createPDF(bos);
 	
