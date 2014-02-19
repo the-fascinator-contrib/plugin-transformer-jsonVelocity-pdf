@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.the-fascinator.plugins</groupId>
 	<artifactId>plugin-transformer-jsonVelocity-pdf</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4</version>
 	<name>Fascinator - Plugin - Transformer - JSON Velocity PDF</name>
 	<parent>
 		<artifactId>organisation</artifactId>
@@ -60,6 +60,6 @@
 	<scm>
 		<url>https://github.com/the-fascinator-contrib/plugin-transformer-jsonVelocity-pdf</url>
 		<developerConnection>scm:git:https://github.com/the-fascinator-contrib/plugin-transformer-jsonVelocity-pdf.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>plugin-transformer-jsonVelocity-pdf-0.4</tag>
 	</scm>
 </project>
