@@ -1,0 +1,19 @@
+sudo: required
+language: java
+services:
+- docker
+before_install:
+- mkdir /tmp/build
+- docker pull qcifengineering/redbox-builder
+- docker run -v /tmp/build:/build -e "CLONEPATH=https://github.com/the-fascinator-contrib/plugin-transformer-jsonVelocity-pdf.git"
+  qcifengineering/redbox-builder
+install: true
+script: true
+after_success:
+- docker run -v /tmp/build:/build -e "SONATYPE_USERNAME=$SONATYPE_USERNAME" -e "SONATYPE_PASSWORD=$SONATYPE_PASSWORD"
+  qcifengineering/redbox-builder /bin/bash -c "cd build/src;mvn --settings /m2_repo/travis-settings.xml
+  -Dmaven.repo.local=/m2_repo -DskipTests=true deploy"
+env:
+  global:
+  - secure: i24VmPeSARH1CnAqRTqNZ678zg0FhzrKpXdsmiz0XuxqxVlnjOY+mDbmPmcffxJ1lTh19qwHcBV7Qjkow/VsoOiL4GJ+/UaduEFKLU9rxxuL/CMJuuYjvyXtDivzIMMMTp4yykGLzxpy3ECFCVFHucLqAfhgy3LVFyvizaU5ywVJbqo7mMoFwSqWuhk9p4zOh+EvJkkL+SsQcs96pzlEnnWbY6+WiBJxGMduPXmtNcdjtGyQfV39a+tnWT7MgCgse+9iLelZ9xd4mJNb/Yh06ahElbXsQTkX6xl87TTQoli2pTraGHinKA8FdInRj24yltJQVoLK8Yl+NjuHo6FLmkQkRyxihOMwU+pksDCrtBMJtAJ4OmKMiG8PHYPs7v0xsp5/j8Qou7iiYqSPas06i09ipAQSoV9X1sfVCvoRDOHzE2IzmeLWWxateecOVyZW32rKAuecO1MyOwqO4etsfB504dRBj8z1C8SVXyaHfWMFJoA7VE3d6idoWLeEk8r2dxfzn6XhHs11ju+HBmar7hsQo+gNIHUewR+La2y8uX0q/cxNqe84NrVugPvlP9SCKrb5gllIfl9tHJ5WwjrgenSfDqfazuYsmapyINIZ6hiLlwTEIXZTJ3ixK1NwESQGXx8uvzWRkgyVSLhPEeQv8vc8XaONeCtdhQJpztua/mE=
+  - secure: an+dN9T+nNTCFY/3MY4Ou5oFC21l/4QtaxU55/RHOxpxPENx8Pi0r1XMQKMlZ7I+oAMa0AIFQCX/rKNcXWbAAt/P3kHyDsQXL05VW77562zEGTBdm2RCpEbGQMYdASSpXwA3ZV4FVSfpWTxPrGAi+6h8ZKXynedlqRrxm5vykPKxYFv+pCWwrOgTQ3+A0pRhrA8rb44UHiFBytrh7WNRzVtu9gY6jiVTog4ZacdB5d+cd2b9wzmyxHIZNS+o/LbXiYsFmepgkIcY7TgZj4Z/uNNeqWFPKoRlcsm/g+cP01izcmItA73nqMcIlfcnO0Qcphjjc7Tn2qNLezb0Iqqdi10IF7A/hci5rvBNwNW2RQGhHckUfuRxywPxbZeJwQWfyCJ9AE9tP2wFoNftE/joxyaQJSub7UwKTtWDXqlmC6NLM4aNbq6LUhnPA/GilLnmM8iCNOINOYgARG78q2lz2Vx165Vp++SrLvRHYiZzZIMLUL1G4pWzVUgl14mC7QZHAPAqLBDKtugmJcB9Cdqj6/HIsqhDkk+BwjEptIVhXpQkfXY+zF6K4cwaqvCBuuFXVOizde/QEfszqBg+h44viSvbvsm1LNUdfO78Yft1aEpdJ9k8TrlQ+aaexaN/T/70YTPw1MzdcD2vbMZCXV/s0N6SSm32K9YBlyT8Gz0hV28=
