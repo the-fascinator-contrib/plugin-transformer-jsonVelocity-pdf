@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.googlecode.fascinator.api.storage.DigitalObject;
@@ -108,7 +110,8 @@ import com.itextpdf.text.DocumentException;
  * @author Jianfeng Li
  */
 public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
-   
+    private static Logger log = LoggerFactory
+            .getLogger(JsonVelocityPDFTransformer.class);
     /**
      * Gets plugin Id
      * 
@@ -142,6 +145,7 @@ public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
     protected Payload storeData(DigitalObject object, String pid, String data)
             throws TransformerException {
         try {
+            log.info("data is: " + data);
             try {
             	if(itemConfig.getBoolean(false,"versioning")) {
             		String dateStampedPid = getTimestampedPayload(pid);

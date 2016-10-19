@@ -64,7 +64,7 @@ public class JsonVelocityTransformerPDFTest {
 
     private void transform() throws Exception {
         // Storage
-        ram = PluginManager.getStorage("ram");
+        ram = PluginManager.getStorage("file-system");
         ram.init("{}");
 
         File file = new File(getClass().getResource("/test-config.json")
@@ -84,7 +84,7 @@ public class JsonVelocityTransformerPDFTest {
         transform();
 
         Set<String> payloadIdList = outputObject.getPayloadIdList();
-        Assert.assertTrue(payloadIdList.contains("Data Management Plan.pdf"));
+        Assert.assertTrue(payloadIdList.contains("DataManagementPlan.pdf"));
         Assert.assertEquals(payloadIdList.size(), 2);
 
     }
