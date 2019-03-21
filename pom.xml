@@ -47,13 +47,13 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-storage-filesystem</artifactId>
-			<version>1.4-SNAPSHOT</version>
+			<version>1.5-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-jsonVelocity</artifactId>
-			<version>1.2.3-SNAPSHOT</version>
+			<version>1.2.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.velocity</groupId>

@@ -20,23 +20,18 @@
  */
 package com.googlecode.fascinator.transformer.jsonVelocity;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xhtmlrenderer.pdf.ITextRenderer;
-
 import com.googlecode.fascinator.api.storage.DigitalObject;
 import com.googlecode.fascinator.api.storage.Payload;
 import com.googlecode.fascinator.api.storage.StorageException;
 import com.googlecode.fascinator.api.transformer.TransformerException;
 import com.googlecode.fascinator.portal.services.PortalManager;
 import com.itextpdf.text.DocumentException;
+import org.apache.commons.lang.StringEscapeUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xhtmlrenderer.pdf.ITextRenderer;
+
+import java.io.*;
 
 /**
  * <p>
@@ -180,7 +175,10 @@ public class JsonVelocityPDFTransformer extends JsonVelocityTransformer {
     	ByteArrayOutputStream bos = new ByteArrayOutputStream();
     	
     	ITextRenderer renderer = new ITextRenderer();
-    	renderer.setDocumentFromString(string,new File(systemConfig.getString(PortalManager.DEFAULT_PORTAL_HOME, "portal", "home")).toURI().toURL().toString());
+    	log.debug("String before unescape is: {}", string);
+    	final String unescaped = StringEscapeUtils.unescapeHtml(string);
+    	log.debug("String after unescape is: {}", unescaped);
+        renderer.setDocumentFromString(unescaped,new File(systemConfig.getString(PortalManager.DEFAULT_PORTAL_HOME, "portal", "home")).toURI().toURL().toString());
     	renderer.layout();
     	renderer.createPDF(bos);
 	
