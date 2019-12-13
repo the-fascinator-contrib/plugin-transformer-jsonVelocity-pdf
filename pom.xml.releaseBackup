@@ -70,7 +70,7 @@
 	</dependencies>
 	<scm>
 		<url>https://github.com/the-fascinator-contrib/plugin-transformer-jsonVelocity-pdf</url>
-		<developerConnection>scm:git:git@github.com:the-fascinator-contrib/plugin-transformer-jsonVelocity-pdf.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/the-fascinator-contrib/plugin-transformer-jsonVelocity-pdf.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 </project>
